@@ -24,7 +24,9 @@ class AudioModel {
     private var BUFFER_SIZE:Int
     var timeData:[Float]
     var fftData:[Float]
-    var twentyPointData:[Float]
+    var twentyPointData:[[Float]]
+    var max1:[Float]
+    var max2:[Float]
     
     // MARK: Public Methods
     init(buffer_size:Int) {
@@ -32,7 +34,9 @@ class AudioModel {
         // anything not lazily instatntiated should be allocated here
         timeData = Array.init(repeating: 0.0, count: BUFFER_SIZE)
         fftData = Array.init(repeating: 0.0, count: BUFFER_SIZE/2)
-        twentyPointData = Array.init(repeating: 0.0, count: 20)
+        max1 = Array.init(repeating: 0.0, count: 20)
+        max2 = Array.init(repeating: 0.0, count: 20)
+        twentyPointData = Array.init(repeating: Array.init(repeating: 0.0, count: 20),count:2)
     }
     
     // public function for starting processing of microphone data
@@ -82,17 +86,22 @@ class AudioModel {
         // you might look into the Accelerate framework to make things more efficient
         var max:Float = -1000.0
         var maxi:Int = 0
+        var nextMax:Float = -1000.0
+        var nextMaxi:Int = 0
         
         if inputBuffer != nil {
             for i in 0..<Int(fftData.count){
                 if(fftData[i]>max){
+                    nextMax = max
+                    nextMaxi = maxi
+                    
                     max = fftData[i]
                     maxi = i
                 }
             }
         }
-        let frequency = Float(maxi) / Float(BUFFER_SIZE) * Float(self.audioManager!.samplingRate)
-        return (max,frequency)
+        let frequency1 = Float(maxi) / Float(BUFFER_SIZE) * Float(self.audioManager!.samplingRate)
+        return (max,frequency1)
     }
     // for sliding max windows, you might be interested in the following: vDSP_vswmax
     
@@ -106,12 +115,12 @@ class AudioModel {
         return FFTHelper.init(fftSize: Int32(BUFFER_SIZE))
     }()
     
-    private lazy var outputBuffer:CircularBuffer? = {
+    private lazy var inputBuffer:CircularBuffer? = {
         return CircularBuffer.init(numChannels: Int64(self.audioManager!.numOutputChannels),
                                    andBufferSize: Int64(BUFFER_SIZE))
     }()
     
-    private lazy var inputBuffer:CircularBuffer? = {
+    private lazy var outputBuffer:CircularBuffer? = {
         return CircularBuffer.init(numChannels: Int64(self.audioManager!.numInputChannels),
                                    andBufferSize: Int64(BUFFER_SIZE))
     }()
@@ -140,9 +149,9 @@ class AudioModel {
     // ***** CHANGED TO OUTPUT BUFFER FOR FILE PROCESSING *****
     @objc
     private func runEveryInterval(){
-        if outputBuffer != nil {
+        if inputBuffer != nil {
             // copy data to swift array
-            self.outputBuffer!.fetchFreshData(&timeData, withNumSamples: Int64(BUFFER_SIZE))
+            self.inputBuffer!.fetchFreshData(&timeData, withNumSamples: Int64(BUFFER_SIZE))
             
             // now take FFT and display it
             fftHelper!.performForwardFFT(withData: &timeData,
@@ -185,7 +194,7 @@ class AudioModel {
                                     numChannels: numChannels)
             
             // set samples to output speaker buffer
-            self.outputBuffer?.addNewFloatData(data,
+            self.inputBuffer?.addNewFloatData(data,
                                          withNumSamples: Int64(numFrames))
         }
     }
@@ -222,18 +231,25 @@ class AudioModel {
     }
     
     // this function splits buffer into 20 equal arrays, and adds max array value to seperate array
-    func getTwentyPointData() -> [Float]{
-        var twentyData:[Float] = []
+    func getTwentyPointData() -> [[Float]]{
+        var twentyData:[[Float]] = [[2]]
+        var max1Data:[Float] = []
+        var max2Data:[Float] = []
         lazy var twentyDataSplit:[Float] = timeData
         for i in twentyDataSplit.splitInSubArrays(into: 20) {
-            var max:Float = 0.0
+            var max1:Float = 0.0
+            var max2: Float = 0.0
             for j in 0...(i.count-1){
-                if(i[j] > max){
-                    max = i[j]
+                if(i[j] > max1){
+                    max2 = max1
+                    max1 = i[j]
                 }
             }
-            twentyData.append(max)
+            max1Data.append(max1)
+            max2Data.append(max2)
         }
+        twentyData.append(max1Data)
+        twentyData.append(max2Data)
         return twentyData // returns 20 float array of max values in sections
     }
 }

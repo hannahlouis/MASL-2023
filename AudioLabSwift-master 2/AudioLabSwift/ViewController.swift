@@ -10,7 +10,7 @@ import UIKit
 import Metal
 
 
-let AUDIO_BUFFER_SIZE = 1024*4
+let AUDIO_BUFFER_SIZE = 2048
 
 
 class ViewController: UIViewController {
@@ -39,8 +39,8 @@ class ViewController: UIViewController {
                         numPointsInGraph: 20)
         
         // just start up the audio model here
-//        audio.startMicrophoneProcessing(withFps: 10)
-        audio.startProcesingAudioFileForPlayback()
+        audio.startMicrophoneProcessing(withFps: 10)
+//        audio.startProcesingAudioFileForPlayback()
 //        audio.startProcessingSinewaveForPlayback(withFreq: 630.0)
 //        audio.startFileProcessing()
         audio.play()
@@ -72,10 +72,10 @@ class ViewController: UIViewController {
             forKey: "time"
         )
         
-        self.graph?.updateGraph(
-            data: self.audio.twentyPointData,
-            forKey: "20-point"
-        )
+//        self.graph?.updateGraph(
+//            data: self.audio.twentyPointData,
+//            forKey: "20-point"
+//        )
         
     }
     
