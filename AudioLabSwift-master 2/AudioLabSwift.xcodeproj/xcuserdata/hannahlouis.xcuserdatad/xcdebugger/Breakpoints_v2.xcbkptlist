@@ -8,7 +8,11 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "C888B3CD-61B5-4761-AA19-3AD70D09CF83"
+<<<<<<< Updated upstream
             shouldBeEnabled = "Yes"
+=======
+            shouldBeEnabled = "No"
+>>>>>>> Stashed changes
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AudioLabSwift/ViewController.swift"
@@ -20,5 +24,104 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+<<<<<<< Updated upstream
+=======
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0B7324A6-2C77-4123-B731-51CB37F2116E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AudioLabSwift/AudioModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
+            landmarkName = "runEveryInterval()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2A2F0BA5-0F07-4781-9E67-254DA95E1847"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AudioLabSwift/AudioModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "250"
+            endingLineNumber = "250"
+            landmarkName = "findPeaks1(arr:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2A2F0BA5-0F07-4781-9E67-254DA95E1847 - 4ed18d0e48c16391"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AudioLabSwift.AudioModel.findPeaks1(arr: Swift.Array&lt;Swift.Float&gt;) -&gt; (Swift.Float, Swift.Float)"
+                  moduleName = "AudioLabSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hannahlouis/Documents/GitHub/Lab1/lab1_copy/MASL-2023/AudioLabSwift-master%202/AudioLabSwift/AudioModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "250"
+                  endingLineNumber = "250"
+                  offsetFromSymbolStart = "132">
+               </Location>
+               <Location
+                  uuid = "2A2F0BA5-0F07-4781-9E67-254DA95E1847 - 4ed18d0e48c16370"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AudioLabSwift.AudioModel.findPeaks1(arr: Swift.Array&lt;Swift.Float&gt;) -&gt; (Swift.Float, Swift.Float)"
+                  moduleName = "AudioLabSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hannahlouis/Documents/GitHub/Lab1/lab1_copy/MASL-2023/AudioLabSwift-master%202/AudioLabSwift/AudioModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "251"
+                  endingLineNumber = "251"
+                  offsetFromSymbolStart = "132">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1C982F1C-CE23-486E-A732-2E6C754F3F82"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AudioLabSwift/AudioModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "319"
+            endingLineNumber = "319"
+            landmarkName = "findPeaks2()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "411B3115-2AE5-46A9-B2F2-B4168F792BEE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AudioLabSwift/AudioModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "279"
+            endingLineNumber = "279"
+            landmarkName = "findPeaks2()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+>>>>>>> Stashed changes
    </Breakpoints>
 </Bucket>
